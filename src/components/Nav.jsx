@@ -6,7 +6,7 @@ import ProfileImg from '../assets/profile.png';
 
 const Nav = () => {
   return (
-    <nav className="w-full p-5">
+    <nav className='mb-5'>
       <ul className="flex flex-row justify-between items-center p-2 bg-[#9f9bbc] rounded-lg">
         <li>
           <Link to="/home">
