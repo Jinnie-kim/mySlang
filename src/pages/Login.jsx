@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import Wrapper from '../components/Wrapper';
 
 const Login = () => {
@@ -23,6 +24,14 @@ const Login = () => {
           >
             Login
           </button>
+          <Link to='/join'>
+          <button
+            type="button"
+            className="w-[100%] rounded-fill bg-[#9f9bbc] py-1.5 px-3.5 rounded-lg hover:bg-[#8c8eb8]"
+          >
+            go to join
+          </button>
+          </Link>
         </form>
       </section>
     </Wrapper>
