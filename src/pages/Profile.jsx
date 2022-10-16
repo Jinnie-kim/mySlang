@@ -1,5 +1,7 @@
 import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
+import WordList from '../components/WordList';
+import Button from '../components/Button';
 
 import ProfilePic from '../assets/profilePic.png';
 
@@ -16,12 +18,8 @@ const Profile = () => {
           />
           <h1 className="mb-14 font-bold text-2xl">Jinnie's Slang</h1>
           <div className="flex flex-col gap-3">
-            <button className="rounded-fill bg-[#9f9bbc] py-1.5 px-3.5 rounded-lg hover:bg-[#8c8eb8]">
-              단어 테스트 하기
-            </button>
-            <button className="rounded-fill bg-[#9f9bbc] py-1.5 px-3.5 rounded-lg hover:bg-[#8c8eb8]">
-              Logout
-            </button>
+            <Button>단어 테스트 하기</Button>
+            <Button>Logout</Button>
           </div>
         </section>
         <section className="w-[828px] relative">
@@ -29,17 +27,14 @@ const Profile = () => {
             단어를 저장해보세요😃
           </span> */}
           <ul className="w-[828px] flex flex-col gap-y-2 h-[30rem] min-h-fit p-2 overflow-y-scroll no-scrollbar">
-            <li className="p-2 border-2 border-[#f68eab] rounded-lg bg-[aliceblue]">
-              <h1 className="mb-5 font-bold text-2xl text-[#7376AC]">Sick</h1>
-              <strong className="w-3/5 inline-block mb-2 font-normal">
-                cool
-              </strong>
-              <p className="w-3/5 mb-2 underline">thats sick man</p>
-              <span>author: awkward misunderstood kid</span>
-              <button className="float-right rounded-fill bg-[#9f9bbc] py-1 px-3 rounded-lg hover:bg-[#8c8eb8]">
-                delete
-              </button>
-            </li>
+            <WordList
+              word="Sick"
+              definition="cool"
+              example="thats sick man"
+              author="awkward misunderstood kid"
+              button="delete"
+              float="float-right"
+            />
             <li className="p-2 border-2 border-[#f68eab] rounded-lg bg-[aliceblue]">
               <h1 className="mb-5 font-bold text-2xl text-[#7376AC]">
                 Sillybilly

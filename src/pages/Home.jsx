@@ -1,5 +1,6 @@
 import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
+import Button from '../components/Button';
 
 const Home = () => {
   return (
@@ -19,9 +20,7 @@ const Home = () => {
             Why are you so cute, you sillybilly.
           </p>
           <span>author: Adafusio</span>
-          <button className="float-right rounded-fill bg-[#9f9bbc] py-1 px-3 rounded-lg hover:bg-[#8c8eb8]">
-            add
-          </button>
+          <Button float='float-right'>add</Button>
         </article>
       </section>
     </Wrapper>

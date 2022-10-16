@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import Wrapper from '../components/Wrapper';
+import Button from '../components/Button';
 
 const Login = () => {
   return (
@@ -18,19 +19,9 @@ const Login = () => {
             placeholder="password"
             className="p-1.5 border-solid border-2 rounded-lg focus-visible:outline-[#8c8eb8]"
           />
-          <button
-            type="submit"
-            className="rounded-fill bg-[#9f9bbc] py-1.5 px-3.5 rounded-lg hover:bg-[#8c8eb8]"
-          >
-            Login
-          </button>
-          <Link to='/join'>
-          <button
-            type="button"
-            className="w-[100%] rounded-fill bg-[#9f9bbc] py-1.5 px-3.5 rounded-lg hover:bg-[#8c8eb8]"
-          >
-            go to join
-          </button>
+          <Button>Login</Button>
+          <Link to="/join">
+            <Button width="w-[100%]">go to join</Button>
           </Link>
         </form>
       </section>
