@@ -9,7 +9,7 @@ const WordList = (props) => {
       </strong>
       <p className="w-3/5 mb-2 underline">{props.example}</p>
       <span>{`author: ${props.author}`}</span>
-      <Button float={props.float}>{props.button}</Button>
+      <Button float={props.float} onClick={props.onClick}>{props.button}</Button>
     </li>
   );
 };
