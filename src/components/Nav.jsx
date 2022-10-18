@@ -6,9 +6,9 @@ import ProfileImg from '../assets/profile.png';
 
 const Nav = () => {
   return (
-    <nav className='mb-5'>
+    <nav className="mb-5">
       <ul className="flex flex-row justify-between items-center p-2 bg-[#9f9bbc] rounded-lg">
-        <li>
+        <li className="flex-1">
           <Link to="/home">
             <img
               src={HomeLogoImg}
@@ -17,21 +17,18 @@ const Nav = () => {
             />
           </Link>
         </li>
-        <li className="flex">
-          <input
-            type="text"
-            placeholder="단어 검색하기"
-            className="rounded-lg p-1 focus-visible:outline-[#8c8eb8] mr-2"
-          />
-          <button type="submit" className="p-1.5 bg-[#f78eab] rounded-3xl">
-            <img
-              src={SearchImg}
-              alt="검색 버튼 이미지"
-              className="w-[24px] h-[24px]"
-            />
-          </button>
+        <li className="flex-none mt-2 mr-3">
+          <Link to="/search">
+            <button type="submit">
+              <img
+                src={SearchImg}
+                alt="검색 버튼 이미지"
+                className="w-[24px] h-[24px]"
+              />
+            </button>
+          </Link>
         </li>
-        <li>
+        <li className="flex-none">
           <Link to="/profile">
             <img
               src={ProfileImg}
