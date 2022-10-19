@@ -13,7 +13,11 @@ const GlobalContextProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, {
     user: null,
   });
-  return <GlobalContext.Provider value={{}}>{children}</GlobalContext.Provider>;
+  return (
+    <GlobalContext.Provider value={{ ...authState, dispatch }}>
+      {children}
+    </GlobalContext.Provider>
+  );
 };
 
 export { GlobalContext, GlobalContextProvider };
