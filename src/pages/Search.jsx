@@ -44,8 +44,8 @@ const Search = () => {
       )}
       <Wrapper>
         <Nav />
-        <section className="flex flex-row items-top justify-around">
-          <section className="w-[275px] text-center p-2">
+        <section className="flex flex-row items-top justify-evenly">
+          <section className="w-[275px] text-center p-2 border-r-2 border-[#8c8eb8]">
             <div className="h-9 flex">
               <input
                 type="text"
