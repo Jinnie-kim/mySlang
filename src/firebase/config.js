@@ -1,5 +1,6 @@
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { initializeApp } from 'firebase/app';
+import { getAnalytics } from 'firebase/analytics';
+import { getAuth } from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -8,9 +9,11 @@ const firebaseConfig = {
   storageBucket: process.env.REACT_APP_STORAGEBUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGINGSENDERID,
   appId: process.env.REACT_APP_APPID,
-  measurementId: process.env.REACT_APP_MEASUREMENTID
+  measurementId: process.env.REACT_APP_MEASUREMENTID,
 };
 
-
-const app = initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig); // firebase app 초기화
 const analytics = getAnalytics(app);
+const auth = getAuth(); // firebase 인증 초기화
+
+export { auth };
