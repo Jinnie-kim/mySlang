@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
+import useGlobalContext from '../store/useGlobalContext';
 import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
 import Modal from '../components/Modal';
@@ -7,12 +9,27 @@ import Button from '../components/Button';
 
 const Home = () => {
   const [openModal, setOpenModal] = useState(undefined);
+  const { user } = useGlobalContext();
+  const navigate = useNavigate();
+  const goLogin = () => {
+    navigate('/login');
+  };
+
   const openModalHandler = () => {
-    setOpenModal({
-      title: '단어 추가하기',
-      content: '단어장에 추가하시겠습니까?',
-      button: '추가하기',
-    });
+    setOpenModal(
+      user
+        ? {
+            title: '단어 추가하기',
+            content: '단어장에 추가하시겠습니까?',
+            button: '추가하기',
+          }
+        : {
+            title: '단어 추가하기',
+            content: '로그인이 필요한 기능입니다.',
+            button: '로그인하기',
+            action: goLogin,
+          }
+    );
   };
 
   const confirmModalHandler = () => {
@@ -27,6 +44,7 @@ const Home = () => {
           content={openModal.content}
           button={openModal.button}
           onClick={confirmModalHandler}
+          onAction={openModal.action}
         />
       )}
       <Wrapper>
