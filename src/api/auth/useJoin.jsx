@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { auth } from '../../firebase/config';
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import useGlobalContext from '../../store/useGlobalContext';
 
 const useJoin = () => {
   const [error, setError] = useState(null);
   const [isPending, setIspending] = useState(false);
+  const { dispatch } = useGlobalContext();
 
   const join = (email, password, displayName) => {
     setError(null);
@@ -20,6 +22,7 @@ const useJoin = () => {
           .then(() => {
             setError(null);
             setIspending(false);
+            dispatch({ type: 'login', payload: user });
           })
           .catch((error) => {
             setError(error.message);
