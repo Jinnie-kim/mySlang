@@ -1,4 +1,6 @@
-import { createContext, useReducer } from 'react';
+import { createContext, useEffect, useReducer } from 'react';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../firebase/config';
 
 const GlobalContext = createContext();
 
@@ -16,7 +18,16 @@ const authReducer = (state, action) => {
 const GlobalContextProvider = ({ children }) => {
   const [authState, dispatch] = useReducer(authReducer, {
     user: null,
+    isAuthReady: false,
   });
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      dispatch({ type: 'isAuthReady', payload: user });
+    });
+    return unsubscribe;
+  }, []);
+
   return (
     <GlobalContext.Provider value={{ ...authState, dispatch }}>
       {children}
