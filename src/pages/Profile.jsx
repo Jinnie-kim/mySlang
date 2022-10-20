@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import useGlobalContext from '../store/useGlobalContext';
+import useLogout from '../api/auth/useLogout';
 import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
 import Modal from '../components/Modal';
@@ -10,6 +12,8 @@ import ProfilePic from '../assets/profilePic.png';
 
 const Profile = () => {
   const [openModal, setOpenModal] = useState(undefined);
+  const { user } = useGlobalContext();
+  const { logout } = useLogout();
 
   const openModalHandler = () => {
     setOpenModal({
@@ -23,9 +27,10 @@ const Profile = () => {
     setOpenModal({
       title: '로그아웃',
       content: '로그아웃 하시겠습니까?',
-      button: '로그아웃'
-    })
-  }
+      button: '로그아웃',
+      action: logout,
+    });
+  };
 
   const confirmModalHandler = () => {
     setOpenModal(null);
@@ -39,6 +44,7 @@ const Profile = () => {
           content={openModal.content}
           button={openModal.button}
           onClick={confirmModalHandler}
+          onAction={openModal.action}
         />
       )}
       <Wrapper>
@@ -53,7 +59,9 @@ const Profile = () => {
             <h1 className="mb-14 font-bold text-2xl">Jinnie's Slang</h1>
             <div className="flex flex-col gap-3">
               <Button>단어 테스트 하기</Button>
-              <Button onClick={authModalHandler}>Logout</Button>
+              <Button onClick={authModalHandler}>
+                {user ? 'Logout' : 'Login'}
+              </Button>
             </div>
           </section>
           <section className="w-[828px] relative">
