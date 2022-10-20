@@ -10,6 +10,8 @@ const authReducer = (state, action) => {
       return { ...state, user: action.payload };
     case 'logout':
       return { ...state, user: null };
+    case 'isAuthReady':
+      return { ...state, user: action.payload, isAuthReady: true };
     default:
       return state;
   }
