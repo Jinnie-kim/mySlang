@@ -11,10 +11,11 @@ const useJoin = () => {
   const join = (email, password, displayName) => {
     setError(null);
     setIspending(true);
+    
     createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         const user = userCredential.user;
-        console.log(user);
+
         if (!user) {
           throw new Error('회원가입에 실패했습니다.');
         }
