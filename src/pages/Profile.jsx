@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import useGlobalContext from '../store/useGlobalContext';
 import useLogout from '../api/auth/useLogout';
@@ -14,6 +15,10 @@ const Profile = () => {
   const [openModal, setOpenModal] = useState(undefined);
   const { user } = useGlobalContext();
   const { logout } = useLogout();
+  const navigate = useNavigate();
+  const goLogin = () => {
+    navigate('/login');
+  };
 
   const openModalHandler = () => {
     setOpenModal({
@@ -24,12 +29,21 @@ const Profile = () => {
   };
 
   const authModalHandler = () => {
-    setOpenModal({
-      title: '로그아웃',
-      content: '로그아웃 하시겠습니까?',
-      button: '로그아웃',
-      action: logout,
-    });
+    setOpenModal(
+      user
+        ? {
+            title: '로그아웃',
+            content: '로그아웃 하시겠습니까?',
+            button: '로그아웃',
+            action: logout,
+          }
+        : {
+            title: '로그인',
+            content: '로그인 하시겠습니까?',
+            button: '로그인',
+            action: goLogin,
+          }
+    );
   };
 
   const confirmModalHandler = () => {
@@ -56,7 +70,9 @@ const Profile = () => {
               alt="사용자 기본 이미지"
               className="w-[200px] inline-block p-1 mb-5 border-4 border-[#8c8eb8] bg-[#ffffff] rounded-[50%]"
             />
-            <h1 className="mb-14 font-bold text-2xl">Jinnie's Slang</h1>
+            <h1 className="mb-14 font-bold text-2xl">
+              {user ? `${user.displayName}'s Slang` : "ur name'll be here"}
+            </h1>
             <div className="flex flex-col gap-3">
               <Button>단어 테스트 하기</Button>
               <Button onClick={authModalHandler}>
