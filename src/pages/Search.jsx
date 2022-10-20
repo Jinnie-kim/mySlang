@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { getSearcedhWords } from '../api/word/word';
 
 import useGlobalContext from '../store/useGlobalContext';
@@ -13,25 +14,36 @@ const Search = () => {
   const [word, setWord] = useState('');
   const [wordDefs, setWordDefs] = useState([]);
   const { user } = useGlobalContext();
+  const navigate = useNavigate();
+  const goLogin = () => {
+    navigate('/login');
+  };
 
   const getWordHandler = (event) => {
     setWord(event.target.value);
   };
 
   const getWordResult = () => {
-    getSearcedhWords(word).then((result) => setWordDefs(result));
+    getSearcedhWords(word).then((result) => {
+      setWordDefs(result);
+    });
   };
 
   const openModalHandler = () => {
-    setOpenModal(user ? {
-      title: '단어 추가하기',
-      content: '단어장에 추가하시겠습니까?',
-      button: '추가하기',
-    } : {
-      title: '단어 추가하기',
-      content: '로그인이 필요한 기능입니다.',
-      button: '로그인하기'
-    });
+    setOpenModal(
+      user
+        ? {
+            title: '단어 추가하기',
+            content: '단어장에 추가하시겠습니까?',
+            button: '추가하기',
+          }
+        : {
+            title: '단어 추가하기',
+            content: '로그인이 필요한 기능입니다.',
+            button: '로그인하기',
+            action: goLogin,
+          }
+    );
   };
 
   const confirmModalHandler = () => {
@@ -46,6 +58,7 @@ const Search = () => {
           content={openModal.content}
           button={openModal.button}
           onClick={confirmModalHandler}
+          onAction={openModal.action}
         />
       )}
       <Wrapper>
