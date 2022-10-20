@@ -13,7 +13,7 @@ const Modal = (props) => {
         </header>
         <p className="h-36 mb-8 bg-[white] rounded-lg">{props.content}</p>
         <footer className="flex gap-4 absolute bottom-3 left-2/4 -translate-x-2/4">
-          <Button>{props.button}</Button>
+          <Button onClick={props.onAction}>{props.button}</Button>
           <Button onClick={props.onClick}>취소하기</Button>
         </footer>
       </section>
