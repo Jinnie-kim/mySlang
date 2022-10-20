@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { getSearcedhWords } from '../api/word/word';
 
+import useGlobalContext from '../store/useGlobalContext';
 import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
 import Modal from '../components/Modal';
@@ -11,6 +12,7 @@ const Search = () => {
   const [openModal, setOpenModal] = useState(undefined);
   const [word, setWord] = useState('');
   const [wordDefs, setWordDefs] = useState([]);
+  const { user } = useGlobalContext();
 
   const getWordHandler = (event) => {
     setWord(event.target.value);
@@ -21,10 +23,14 @@ const Search = () => {
   };
 
   const openModalHandler = () => {
-    setOpenModal({
+    setOpenModal(user ? {
       title: '단어 추가하기',
       content: '단어장에 추가하시겠습니까?',
-      button: '삭제하기',
+      button: '추가하기',
+    } : {
+      title: '단어 추가하기',
+      content: '로그인이 필요한 기능입니다.',
+      button: '로그인하기'
     });
   };
 
