@@ -1,6 +1,7 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from 'firebase/analytics';
 import { getAuth } from 'firebase/auth';
+import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_APIKEY,
@@ -15,5 +16,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig); // firebase app 초기화
 const analytics = getAnalytics(app);
 const auth = getAuth(); // firebase 인증 초기화
+const appFireStore = getFirestore(app);
 
-export { auth };
+export { auth, appFireStore };
