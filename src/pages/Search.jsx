@@ -29,25 +29,27 @@ const Search = () => {
     });
   };
 
-  const openModalHandler = () => {
-    setOpenModal(
-      user
-        ? {
-            title: '단어 추가하기',
-            content: '단어장에 추가하시겠습니까?',
-            button: '추가하기',
-          }
-        : {
-            title: '단어 추가하기',
-            content: '로그인이 필요한 기능입니다.',
-            button: '로그인하기',
-            action: goLogin,
-          }
-    );
+  const openModalHandler = (word) => {
+    if (user) {
+      setOpenModal({
+        title: '단어 추가하기',
+        content: '단어장에 추가하시겠습니까?',
+        button: '추가하기',
+      });
+      localStorage.setItem('word', JSON.stringify(word));
+    } else {
+      setOpenModal({
+        title: '단어 추가하기',
+        content: '로그인이 필요한 기능입니다.',
+        button: '로그인하기',
+        action: goLogin,
+      });
+    }
   };
 
   const confirmModalHandler = () => {
     setOpenModal(null);
+    localStorage.removeItem('word');
   };
 
   return (
@@ -102,6 +104,7 @@ const Search = () => {
                       example={word.example}
                       author={word.author}
                       onClick={openModalHandler}
+                      onAdd={word}
                       button="add"
                       float="float-right"
                     />
