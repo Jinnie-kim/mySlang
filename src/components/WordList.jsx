@@ -1,6 +1,9 @@
 import Button from './Button';
 
 const WordList = (props) => {
+  const getWordHandler = () => {
+    props.onClick(props.onAdd)
+  }
   return (
     <li className="p-2 border-2 border-[#f68eab] rounded-lg bg-[aliceblue]">
       <h1 className="mb-5 font-bold text-2xl text-[#7376AC]">{props.word}</h1>
@@ -9,7 +12,9 @@ const WordList = (props) => {
       </strong>
       <p className="w-3/5 mb-2 underline">{props.example}</p>
       <span>{`author: ${props.author}`}</span>
-      <Button float={props.float} onClick={props.onClick}>{props.button}</Button>
+      <Button float={props.float} onClick={getWordHandler}>
+        {props.button}
+      </Button>
     </li>
   );
 };
