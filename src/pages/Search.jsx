@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getSearcedhWords } from '../api/word/word';
-
+import useWordStore from '../api/word/useWordStore';
 import useGlobalContext from '../store/useGlobalContext';
 import Wrapper from '../components/Wrapper';
 import Nav from '../components/Nav';
@@ -14,6 +14,8 @@ const Search = () => {
   const [word, setWord] = useState('');
   const [wordDefs, setWordDefs] = useState([]);
   const { user } = useGlobalContext();
+  const uid = user.uid;
+  const { addDocument, response } = useWordStore('wordList');
   const navigate = useNavigate();
   const goLogin = () => {
     navigate('/login');
@@ -29,12 +31,18 @@ const Search = () => {
     });
   };
 
+  const getSelectedWord = () => {
+    const word = JSON.parse(localStorage.getItem('word'));
+    addDocument({ uid, ...word });
+  };
+
   const openModalHandler = (word) => {
     if (user) {
       setOpenModal({
         title: '단어 추가하기',
         content: '단어장에 추가하시겠습니까?',
         button: '추가하기',
+        action: getSelectedWord,
       });
       localStorage.setItem('word', JSON.stringify(word));
     } else {
