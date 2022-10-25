@@ -14,7 +14,8 @@ import ProfilePic from '../assets/profilePic.png';
 const Profile = () => {
   const [openModal, setOpenModal] = useState(undefined);
   const { user } = useGlobalContext();
-  const { documents, error } = useCollection('wordList');
+  const uid = user && user.uid;
+  const { documents, error } = useCollection('wordList', ['uid','==',uid]);
   const { logout } = useLogout();
   const navigate = useNavigate();
   const goLogin = () => {
