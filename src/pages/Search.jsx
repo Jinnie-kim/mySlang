@@ -34,6 +34,7 @@ const Search = () => {
   const getSelectedWord = () => {
     const word = JSON.parse(localStorage.getItem('word'));
     addDocument({ uid, ...word });
+    setOpenModal(null);
   };
 
   const openModalHandler = (word) => {
