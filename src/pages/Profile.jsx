@@ -36,7 +36,7 @@ const Profile = () => {
             title: '로그아웃',
             content: '로그아웃 하시겠습니까?',
             button: '로그아웃',
-            action: logout,
+            action: actionModalHandler,
           }
         : {
             title: '로그인',
@@ -48,6 +48,11 @@ const Profile = () => {
   };
 
   const confirmModalHandler = () => {
+    setOpenModal(null);
+  };
+
+  const actionModalHandler = () => {
+    logout();
     setOpenModal(null);
   };
 
