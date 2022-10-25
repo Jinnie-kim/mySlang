@@ -45,7 +45,6 @@ const useWordStore = (collectionName) => {
         ...document,
         createdTime,
       });
-      console.log(documentRef);
       dispatch({ type: 'addDoc', payload: documentRef });
     } catch (error) {
       dispatch({ type: 'error', payload: error.message });
