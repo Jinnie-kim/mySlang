@@ -2,8 +2,9 @@ import Button from './Button';
 
 const WordList = (props) => {
   const getWordHandler = () => {
-    props.onClick(props.onAdd)
-  }
+    props.onClick(props.onAdd);
+    localStorage.setItem('id', props.id);
+  };
   return (
     <li className="p-2 border-2 border-[#f68eab] rounded-lg bg-[aliceblue]">
       <h1 className="mb-5 font-bold text-2xl text-[#7376AC]">{props.word}</h1>
