@@ -1,5 +1,5 @@
 import { useReducer } from 'react';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc, deleteDoc, doc } from 'firebase/firestore';
 import { appFireStore, timeStamp } from '../../firebase/config';
 
 const initState = {
@@ -14,6 +14,13 @@ const storeReducer = (state, action) => {
     case 'isPending':
       return { isPending: true, document: null, success: false, error: null };
     case 'addDoc':
+      return {
+        isPending: false,
+        document: action.payload,
+        success: true,
+        error: null,
+      };
+    case 'deleteDoc':
       return {
         isPending: false,
         document: action.payload,
@@ -51,7 +58,18 @@ const useWordStore = (collectionName) => {
     }
   };
 
-  return { addDocument, response };
+  const deleteDocument = async (id) => {
+    dispatch({ type: 'isPending' });
+    try {
+      const documentRef = await deleteDoc(doc(collectionRef, id));
+      dispatch({ type: 'deleteDoc', payload: documentRef });
+    } catch (error) {
+      dispatch({ type: 'error', payload: error.message });
+      console.log(error);
+    }
+  };
+
+  return { addDocument, deleteDocument, response };
 };
 
 export default useWordStore;
