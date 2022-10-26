@@ -80,13 +80,13 @@ const Search = () => {
               <input
                 type="text"
                 placeholder="단어 검색하기"
-                className="rounded-lg p-1 focus-visible:outline-[#8c8eb8] mr-2"
+                className="w-[177px] rounded-lg p-1 focus-visible:outline-[#8c8eb8] mr-2"
                 value={word}
                 onChange={getWordHandler}
               />
               <button
                 type="submit"
-                className="p-1.5 bg-[#f78eab] rounded-3xl"
+                className="w-[36px] p-1.5 bg-[#f78eab] rounded-3xl"
                 onClick={getWordResult}
               >
                 <img
