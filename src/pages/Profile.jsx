@@ -10,12 +10,14 @@ import WordList from '../components/WordList';
 import Button from '../components/Button';
 
 import ProfilePic from '../assets/profilePic.png';
+import useWordStore from '../api/word/useWordStore';
 
 const Profile = () => {
   const [openModal, setOpenModal] = useState(undefined);
   const { user } = useGlobalContext();
   const uid = user && user.uid;
-  const { documents, error } = useCollection('wordList', ['uid','==',uid]);
+  const { documents, error } = useCollection('wordList', ['uid', '==', uid]);
+  const { deleteDocument } = useWordStore('wordList');
   const { logout } = useLogout();
   const navigate = useNavigate();
   const goLogin = () => {
@@ -27,7 +29,14 @@ const Profile = () => {
       title: '단어 삭제하기',
       content: '단어장에서 삭제하시겠습니까?',
       button: '삭제하기',
+      action: wordDeleteHandler,
     });
+  };
+
+  const wordDeleteHandler = () => {
+    const id = localStorage.getItem('id');
+    deleteDocument(id);
+    setOpenModal(null);
   };
 
   const authModalHandler = () => {
@@ -50,6 +59,7 @@ const Profile = () => {
 
   const confirmModalHandler = () => {
     setOpenModal(null);
+    localStorage.removeItem('id');
   };
 
   const actionModalHandler = () => {
@@ -100,6 +110,7 @@ const Profile = () => {
                       author={word.author}
                       onClick={openModalHandler}
                       onAdd={word}
+                      id={word.id}
                       button="delete"
                       float="float-right"
                     />
