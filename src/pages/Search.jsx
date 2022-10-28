@@ -15,7 +15,7 @@ const Search = () => {
   const [wordDefs, setWordDefs] = useState([]);
   const { user } = useGlobalContext();
   const uid = user && user.uid;
-  const { addDocument, response } = useWordStore('wordList');
+  const { addDocument } = useWordStore('wordList');
   const navigate = useNavigate();
   const goLogin = () => {
     navigate('/login');
