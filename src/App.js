@@ -5,10 +5,14 @@ import Join from './pages/Join';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Search from './pages/Search';
+import Load from './components/Load';
+import useGlobalContext from './store/useGlobalContext';
 
 const App = () => {
+  const { isAuthReady } = useGlobalContext();
   return (
     <BrowserRouter>
+    {isAuthReady ? (
       <Routes>
         <Route path="/" element={<InitPage />} />
         <Route path="/login" element={<Login />} />
@@ -17,6 +21,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/search" element={<Search />} />
       </Routes>
+    ) : <Load />}
       <p className="fixed bottom-1.5 left-1/2 -translate-x-1/2 text-[8px] text-[#ababab]">
         아이콘 제작자 Freepik from www.flaticon.com
       </p>
