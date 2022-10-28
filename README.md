@@ -1,4 +1,4 @@
-cㅊ# mySlang 🗣
+# mySlang 🗣
 
 > ## 프로젝트 소개
 
