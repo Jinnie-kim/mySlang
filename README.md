@@ -2,7 +2,7 @@
 
 > ## 프로젝트 소개
 
-배포: <a href="https://myslang-26396.firebaseapp.com/">https://myslang-26396.firebaseapp.com/</a>
+배포: <a href="https://myslang-26396.web.app/">https://myslang-26396.web.app/</a>
 
 테스트 ID: slang@test.com
 <br />
