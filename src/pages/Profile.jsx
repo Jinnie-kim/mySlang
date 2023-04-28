@@ -70,31 +70,23 @@ const Profile = () => {
   return (
     <>
       {openModal && (
-        <Modal
-          title={openModal.title}
-          content={openModal.content}
-          button={openModal.button}
-          onClick={confirmModalHandler}
-          onAction={openModal.action}
-        />
+        <Modal title={openModal.title} content={openModal.content} button={openModal.button} onClick={confirmModalHandler} onAction={openModal.action} />
       )}
       <Wrapper>
         <Nav />
         <section className="flex flex-row items-top justify-around">
           <section className="text-center w-[275px] p-2">
-            <img
-              src={ProfilePic}
-              alt="사용자 기본 이미지"
-              className="w-[200px] inline-block p-1 mb-5 border-4 border-[#8c8eb8] bg-[#ffffff] rounded-[50%]"
-            />
-            <h1 className="mb-14 font-bold text-2xl">
-              {user ? `${user.displayName}'s Slang` : "ur name'll be here"}
-            </h1>
+            <img src={ProfilePic} alt="사용자 기본 이미지" className="w-[200px] inline-block p-1 mb-5 border-4 border-[#8c8eb8] bg-[#ffffff] rounded-[50%]" />
+            <h1 className="mb-14 font-bold text-2xl">{user ? `${user.displayName}'s Slang` : "ur name'll be here"}</h1>
             <div className="flex flex-col gap-3">
-              <Button>단어 테스트 하기</Button>
-              <Button onClick={authModalHandler}>
-                {user ? 'Logout' : 'Login'}
+              <Button
+                onClick={() => {
+                  alert('준비 중인 기능입니다.');
+                }}
+              >
+                단어 테스트 하기
               </Button>
+              <Button onClick={authModalHandler}>{user ? 'Logout' : 'Login'}</Button>
             </div>
           </section>
           <section className="w-[828px] relative">
@@ -118,9 +110,7 @@ const Profile = () => {
                 })}
               </ul>
             ) : (
-              <span className="absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 text-2xl text-[#8c8eb8]">
-                로그인 후 단어를 저장해보세요😃
-              </span>
+              <span className="absolute top-[50%] left-[50%] -translate-x-2/4 -translate-y-2/4 text-2xl text-[#8c8eb8]">로그인 후 단어를 저장해보세요😃</span>
             )}
           </section>
         </section>
